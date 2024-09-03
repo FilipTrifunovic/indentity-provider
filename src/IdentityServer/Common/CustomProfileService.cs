@@ -24,6 +24,8 @@ namespace IdentityServer.Common
             claims.Add(new Claim("lastName", user.LastName ?? string.Empty));
             claims.Add(new Claim("address", user.Address ?? string.Empty));
             claims.Add(new Claim("country", user.Country ?? string.Empty));
+            claims.Add(new Claim("email", user.Email ?? string.Empty));
+            claims.Add(new Claim("phone_number", user.PhoneNumber ?? string.Empty));
 
             context.IssuedClaims.AddRange(claims);
         }

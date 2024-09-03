@@ -93,8 +93,9 @@ public class Index : PageModel
                     // return the response is for better UX for the end user.
                     return this.LoadingPage(Input.ReturnUrl);
                 }
+                var redirect_uri = HttpUtility.ParseQueryString(Input.ReturnUrl).Get("redirect_uri");
 
-                return Redirect(Input.ReturnUrl ?? "~/");
+                return Redirect(redirect_uri ?? "~/");
             }
             else
             {

@@ -6,8 +6,7 @@ namespace IdentityServer;
 public static class Config
 {
     public static IEnumerable<IdentityResource> IdentityResources =>
-        new IdentityResource[]
-        {
+        [
             new IdentityResources.OpenId(),
             new IdentityResources.Profile(),
             new IdentityResource
@@ -15,7 +14,7 @@ public static class Config
                 Name = "email",
                 UserClaims = { JwtClaimTypes.Email },
             }
-        };
+        ];
 
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
@@ -31,8 +30,7 @@ public static class Config
     };
 
     public static IEnumerable<Client> Clients =>
-        new Client[] 
-            {
+        [
              new Client
             {
                 ClientId = "angular_spa",
@@ -43,7 +41,11 @@ public static class Config
                 AllowedCorsOrigins = { "http://localhost:4200" },
                 AllowedScopes = { "openid", "profile","email","product" },
                 RequirePkce = true,
-                AllowAccessTokensViaBrowser = true
+                AllowAccessTokensViaBrowser = true,
+                AllowOfflineAccess = true, 
+                RefreshTokenUsage = TokenUsage.ReUse,
+                RefreshTokenExpiration = TokenExpiration.Absolute,
+                AbsoluteRefreshTokenLifetime = 2592000,
             }
-        };
+        ];
 }
